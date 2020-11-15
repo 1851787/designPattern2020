@@ -102,9 +102,13 @@ protected:
 			std::string paramTag1 = sliceCommand(cmd);		//通过切片子指令，获得第一个参数的标签
 			removeBlank(cmd);								//移除多余空格
 			if (paramTag1 == "-p") {
-				int pos = std::stoi(cmd);
-				std::cout << getDescription(pos) << std::endl;
-				return true;
+				if (cmd != "")
+				{
+					int pos = std::stoi(cmd);
+					std::cout << getDescription(pos) << std::endl;
+					return true;
+				}
+				std::cout << "请输入有效的编号" << std::endl;
 			}
 			cmd = paramTag1 + " " + cmd;
 		}
@@ -112,11 +116,15 @@ protected:
 			std::string paramTag1 = sliceCommand(cmd);		//责任链初步实现
 			removeBlank(cmd);
 			if (paramTag1 == "-p") {
-				int pos = std::stoi(cmd);
-				child_play(bookingList[pos]->description);
-				woman_play(bookingList[pos]->description);
-				man_play(bookingList[pos]->description);
-				return true;
+				if (cmd != "")
+				{
+					int pos = std::stoi(cmd);
+					child_play(bookingList[pos]->description);
+					woman_play(bookingList[pos]->description);
+					man_play(bookingList[pos]->description);
+					return true;
+				}
+				std::cout << "请输入有效的编号" << std::endl;
 			}
 			cmd = paramTag1 + " " + cmd;
 		}
